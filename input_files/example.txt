@@ -1,0 +1,4 @@
+This is a confidential document.
+Server IP: 192.168.1.1
+Hostname: server.company.com
+Do not share this with unauthorized users.

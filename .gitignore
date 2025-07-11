@@ -1,0 +1,5 @@
+__pycache__/
+*.zip
+*.pyc
+*.log
+processed_output/
