@@ -134,9 +134,3 @@ if __name__ == "__main__":
 
     create_watermark_pdf(watermark_text)  # Create watermark.pdf once
     process_folder(input_dir, output_dir, zip_password)
-"""
-Currently the project does following:
--> Mask IP and Host Names only in .txt files
--> Password Protects only Pdf File and the final Zip File
--> Watermarks all types of files (.txt, .pdf, .jpg, etc.)
-"""
