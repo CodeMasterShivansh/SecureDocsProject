@@ -1,6 +1,7 @@
 import os
 import re
 import pyzipper
+import argparse
 from PIL import Image, ImageDraw, ImageFont
 from PyPDF2 import PdfReader, PdfWriter
 import pikepdf
@@ -121,16 +122,22 @@ def process_folder(input_folder, output_folder, password):
             watermark_image(input_path, output_path)
             processed_files.append(output_path)
 
-    # Create final password-protected zip
+# -----------[ Final Password-Protected Zip ]----------- #
     zip_path = os.path.join(output_folder, "protected_output.zip")
     zip_with_password(processed_files, zip_path, password)
-    print(f"\n✅ Final ZIP created at: {zip_path}")
+    print(f"\nFinal ZIP created at: {zip_path}")
 
 # -----------[ Run the Project ]----------- #
 if __name__ == "__main__":
-    input_dir = "./BEL/input_files"        # Put your input files here
-    output_dir = "./BEL/processed_output"  # Output will be saved here
-    zip_password = "12345"           # Set a strong password here
+    parser = argparse.ArgumentParser(description="Secure Document Processor with Masking, Watermarking & Encryption")
+    parser.add_argument('--input', required=True, help='Path to input folder')
+    parser.add_argument('--output', required=True, help='Path to output folder')
+    parser.add_argument('--password', required=True, help='Password to protect PDF and ZIP files')
+    args = parser.parse_args()
 
-    create_watermark_pdf(watermark_text)  # Create watermark.pdf once
+    input_dir = args.input
+    output_dir = args.output
+    zip_password = args.password
+
+    create_watermark_pdf(watermark_text)
     process_folder(input_dir, output_dir, zip_password)
